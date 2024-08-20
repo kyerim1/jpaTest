@@ -26,6 +26,8 @@ public class BoardController {
     @GetMapping("/community")
     public String cmt(Model model){
         // 작성된 글 가져와서 목록출력
+        model.addAttribute("boardListDto", boardService.all() );
+
         return "board/index";
     }
 
