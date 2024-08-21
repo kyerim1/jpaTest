@@ -1,6 +1,7 @@
 package com.members.service;
 
 import com.members.Dto.MemberDto;
+import com.members.Dto.MemberLoginDto;
 import com.members.entity.Member;
 import com.members.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +17,10 @@ public class MemberService {
         Member member = memberDto.createEntity();
 
         memberRepository.save(member);
+    }
+
+    public void 로그인처리(MemberLoginDto memberLoginDto) {
+
+
     }
 }
