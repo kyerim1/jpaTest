@@ -1,9 +1,10 @@
 package com.members.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+
 
 @Entity
 @Getter

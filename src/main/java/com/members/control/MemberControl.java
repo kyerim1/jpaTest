@@ -1,5 +1,6 @@
 package com.members.control;
 
+import com.members.Dto.MemberDto;
 import com.members.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
@@ -17,13 +18,15 @@ public class MemberControl {
  //회원가입 페이지 요청
     @GetMapping("/signUp")
     public String 회원가입페이지(Model model){
-
+        model.addAttribute("memberDto" , new MemberDto());
         return "member/signUp";
     }
 
  //회원가입 요청
     @PostMapping("/signUp")
-    public String 회원가입(){
+    public String 회원가입( MemberDto memberDto){
+
+        memberService.회원가입저장(memberDto);
 
         return "redirect:/";
     }
