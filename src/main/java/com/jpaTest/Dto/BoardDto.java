@@ -24,10 +24,20 @@ public class BoardDto {
 
     private static ModelMapper modelMapper = new ModelMapper();
 
+    // Board(entity) -> BoardDto(DTO)에 저장
+    public static BoardDto of(Board board){
+        return modelMapper.map(board, BoardDto.class);
+    }
+
     //BoardDto객체 데이터 - > Board객체에 저장
     public Board createBoard(){
         return modelMapper.map(this, Board.class);
     }
+
+
+
+
+
 
     //BoardDto -> Board
 //    public Board createBoard(){
