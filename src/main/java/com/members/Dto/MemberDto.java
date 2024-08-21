@@ -13,6 +13,15 @@ public class MemberDto {
     private String password;
     private String tel;
 
+    public static MemberDto of(Member member) {
+        MemberDto memberDto = new MemberDto();
+        memberDto.setId(member.getId());
+        memberDto.setTel(member.getTel());
+        memberDto.setPassword(member.getPassword());
+        memberDto.setUserId(member.getUserId());
+        return memberDto;
+    }
+
 
     // DTO -> ENTITY
     public Member createEntity(){

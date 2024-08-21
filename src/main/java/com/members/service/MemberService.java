@@ -26,4 +26,11 @@ public class MemberService {
         memberRepository.findByUserIdAndPassword(memberLoginDto.getUserId(), memberLoginDto.getPassword());
 
     }
+
+    public MemberDto 회원정보얻기(String userId) {
+
+        Member member = memberRepository.findByUserId(userId);
+        MemberDto memberDto = MemberDto.of(member);
+        return memberDto;
+    }
 }

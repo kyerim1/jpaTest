@@ -55,7 +55,10 @@ public class MemberControl {
 
  //회원정보수정 페이지 요청
     @GetMapping("/modify")
-    public String 회원수정(Model model){
+    public String 회원수정(Model model, HttpSession session){
+        String userId = (String)session.getAttribute("user");
+        MemberDto memberDto = memberService.회원정보얻기(userId);
+        model.addAttribute("memberDto",memberDto );
 
         return "member/signUp";
     }
