@@ -7,6 +7,8 @@ import com.members.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MemberService {
     @Autowired
@@ -20,7 +22,8 @@ public class MemberService {
     }
 
     public void 로그인처리(MemberLoginDto memberLoginDto) {
-
+       // select * from member_test where user_id=xxx and password=xxx
+        memberRepository.findByUserIdAndPassword(memberLoginDto.getUserId(), memberLoginDto.getPassword());
 
     }
 }
