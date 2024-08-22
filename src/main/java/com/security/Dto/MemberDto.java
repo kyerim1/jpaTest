@@ -3,6 +3,7 @@ package com.security.Dto;
 import com.security.Entity.Member;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -23,10 +24,11 @@ public class MemberDto {
     private int age; //나이
 
     // DTO -> ENTITY
-    public Member createEntity(){
+    public Member createEntity(PasswordEncoder passwordEncoder){
         Member member = new Member();
         member.setAge( this.age );
-        member.setPassword( this.password );
+        String pw = passwordEncoder.encode( this.password); // 회원가입시 입력한 비밀번호 암호화
+        member.setPassword(  pw   );
         member.setUserId( this.userId );
         return member;
     }
