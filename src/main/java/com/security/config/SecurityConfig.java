@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -26,7 +27,10 @@ public class SecurityConfig {
 
 
         http.authorizeRequests()
+                .mvcMatchers("/guestHome").permitAll()
+                .mvcMatchers("/css/**", "/js/**", "/image/**").permitAll()
                 .mvcMatchers("/signUp").permitAll() // /signUp 주소는 인증없이 허용
+                .mvcMatchers("/adminHome").hasRole("ADMIN")
                 .anyRequest().authenticated();
 
         http.formLogin()
@@ -37,9 +41,11 @@ public class SecurityConfig {
                 .passwordParameter("pw")  // login.html의 비밀번호 입력 input태그 값
                 .permitAll()
                 .and()
-                .logout().logoutUrl("/logout") // 로그아웃하기위해 /logout주소요청
+                .logout()
+                .logoutRequestMatcher( new AntPathRequestMatcher("/logout"))
+                //.logoutUrl("/logout") // 로그아웃하기위해 /logout주소요청
                 .logoutSuccessUrl("/") // 로그아웃 성공시 이동할 주소
-                .invalidateHttpSession(true) // 세션제거
+               // .invalidateHttpSession(true) // 세션제거
                 .permitAll();
 
         //http.formLogin().disable(); // 기본 로그인페이지 비활성화
@@ -47,7 +53,7 @@ public class SecurityConfig {
         //토큰인증 , 클라이언트와 서버의 상호 작용을으로 사용, 정상적인 경로로 요청이 이루어지기위해
         //  스프링시큐리티에서 제공하는 값이다.
         // disable은  csrf 토큰을 사용하지않겠다 로 적용
-        http.csrf().disable();
+       // http.csrf().disable();
 
         return http.build();
     }

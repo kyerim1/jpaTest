@@ -7,6 +7,9 @@
 <body>
         <h1>로그인페이지</h1>
         <form method="post" action="/login_chk">
+
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
             ID : <input type="text" name="id"> <br>
             PW : <input type="password"  name="pw">  <br>
             <button>로그인</button>

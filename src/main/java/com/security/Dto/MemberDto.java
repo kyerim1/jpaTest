@@ -1,6 +1,7 @@
 package com.security.Dto;
 
 import com.security.Entity.Member;
+import com.security.constant.Role;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,6 +31,7 @@ public class MemberDto {
         String pw = passwordEncoder.encode( this.password); // 회원가입시 입력한 비밀번호 암호화
         member.setPassword(  pw   );
         member.setUserId( this.userId );
+        member.setRole(Role.USER);
         return member;
     }
 

@@ -38,7 +38,7 @@ public class MemberService implements UserDetailsService {
             }
             return User.builder().username(member.getUserId())
                     .password( member.getPassword())
-                    .roles("USER")
+                    .roles( member.getRole().toString())
                     .build();
 
     }

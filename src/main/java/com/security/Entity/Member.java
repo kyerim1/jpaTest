@@ -1,6 +1,7 @@
 package com.security.Entity;
 
 
+import com.security.constant.Role;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,4 +20,7 @@ public class Member {
     private String userId;
     private String password;
     private int age;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }

@@ -25,6 +25,22 @@ public class MainControl {
 
     private final PasswordEncoder passwordEncoder;
 
+    @GetMapping("/guestHome")
+    public String guest(){
+        return "guest";
+    }
+
+    @GetMapping("/userHome")
+    public String user(){
+        return "user";
+    }
+
+    @GetMapping("/adminHome")
+    public String admin(){
+        return "admin";
+    }
+
+
 
     @GetMapping("/")
     public String home(){
